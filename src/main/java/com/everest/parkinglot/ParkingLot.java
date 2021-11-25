@@ -1,5 +1,9 @@
 package com.everest.parkinglot;
 
+import com.everest.parkinglotstrategy.*;
+import com.everest.parkinglotstrategy.ParkByCarStrategy;
+import com.everest.parkinglotstrategy.ParkByTruckStrategy;
+import com.everest.parkinglotstrategy.ParkingStrategy;
 import com.everest.vehicle.Vehicle;
 
 public class ParkingLot {
@@ -7,6 +11,7 @@ public class ParkingLot {
     private int noOfFloors;
     private int slotsInEachFloor;
     private Floor[] floors;
+    ParkingStrategy parkingStrategy;
 
     public ParkingLot(String parkingId, int noOfFloors, int slotsInEachFloor) {
         this.parkingId=parkingId;
@@ -16,6 +21,11 @@ public class ParkingLot {
         for(int i=0;i<noOfFloors;i++){
             floors[i]=new Floor(slotsInEachFloor);
         }
+    }
+
+    public String parkVehicle(Vehicle vehicle, ParkingLot parkingLot) {
+        parkingStrategy=getParkingLotStrategyFor(vehicle.getVehicleType());
+        return parkingStrategy.parkVehicle(vehicle, parkingLot);
     }
 
     public Floor getFloorAtIndex(int i){
@@ -29,5 +39,17 @@ public class ParkingLot {
     public int getNoOfFloors() {
         return this.noOfFloors;
     }
+    private ParkingStrategy getParkingLotStrategyFor(String vehicleType) {
+        switch (vehicleType){
+            case "CAR":
+                return new ParkByCarStrategy();
 
+            case "BIKE":
+                return new ParkByBikeStrategy();
+
+            case "TRUCK":
+                return new ParkByTruckStrategy();
+        }
+        return null;
+    }
 }
