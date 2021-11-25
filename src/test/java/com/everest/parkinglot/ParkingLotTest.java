@@ -26,4 +26,10 @@ class ParkingLotTest {
         int expected=parkingLot.getNoOfFloors();
         assertEquals(expected,noOfFloors);
     }
+
+    @Test
+    void checkSlotsInEachFloor(){
+        int expected=parkingLot.getSlotsInEachFloor();
+        assertEquals(expected,slotsInEachFloor);
+    }
 }
