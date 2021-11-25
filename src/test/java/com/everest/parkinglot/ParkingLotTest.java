@@ -47,4 +47,12 @@ class ParkingLotTest {
         String actual="Parked vehicle. Ticket ID: PR1234_1_4";
         assertEquals(expected,actual);
     }
+
+    @Test
+    void testForUnParkVehicle(){
+        String expected=parkingLot.unParkVehicle("PR1234_3_4",parkingLot);
+        String actual="Invalid ticket";
+        assertEquals(expected,actual);
+    }
+
 }
