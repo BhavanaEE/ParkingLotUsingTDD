@@ -28,6 +28,15 @@ public class ParkingLot {
         return parkingStrategy.parkVehicle(vehicle, parkingLot);
     }
 
+    public String unParkVehicle(String ticketId,ParkingLot parkingLot){
+        try {
+            return parkingStrategy.unParkVehicle(ticketId,parkingLot);
+        }
+        catch (Exception e){
+            return "Invalid ticket";
+        }
+    }
+
     public Floor getFloorAtIndex(int i){
         return this.floors[i];
     }
